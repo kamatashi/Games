@@ -4,13 +4,14 @@ import csv
 
 fileTeste = 'deslocamentos.csv'
 
-
+# A função subtrai e entrega a diferença entre valores em uma string
 def square(firstNum, lastNum):
     hourTaked = int(lastNum[0]) - int(firstNum[0])
     minTaked = int(lastNum[1]) - int(firstNum[1])
     return str(hourTaked) + ':' + str(minTaked)
 
 
+# Função que trata strings
 def track(dateTrack):
     time = dateTrack.split(':')
     hour = time[0]
@@ -18,6 +19,7 @@ def track(dateTrack):
     return hour + '.' + min
 
 
+# Função que pega valores numa string
 def takeRow(file, firstCell, lastCell):
     with open(file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
