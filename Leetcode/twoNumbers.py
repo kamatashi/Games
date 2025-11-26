@@ -64,18 +64,30 @@ function arrayToListNode(arr) {
     return dummyHead.next;
 }
 
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val);
+    this.next = (next === undefined ? null : next);
+}
+
 var addTwoNumbers = function(l1, l2) {
-    const l1Reverse = reverseLinkedList(l1);
-    const l2Reverse = reverseLinkedList(l2);
+    const dummyHead = new ListNode(0); 
+    let current = dummyHead;           
+    let carry = 0;                     
 
-    const sum = listToStrToNum(l1Reverse) + listToStrToNum(l2Reverse)
+    while (l1 !== null || l2 !== null || carry !== 0) {
+        const val1 = l1 ? l1.val : 0;
+        const val2 = l2 ? l2.val : 0;
 
-    const result = sum.toString()
+        const sum = val1 + val2 + carry;
+        carry = Math.floor(sum / 10);
+        const digit = sum % 10;
 
-    const resultStringArr = sum.toString().split(''); 
-    const reversedResultArr = resultStringArr.reverse();
+        current.next = new ListNode(digit); 
+        current = current.next;
 
-    return arrayToListNode(reversedResultArr);
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+    }
 
-
+    return dummyHead.next; 
 };
