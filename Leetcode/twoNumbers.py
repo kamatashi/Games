@@ -14,6 +14,8 @@
 const listToStrToNum = (head) => {
     let acc = "";
 
+    let current = head;
+
     while (current !== null) {
         acc = acc + current.val.toString(); 
         
